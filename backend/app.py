@@ -36,8 +36,8 @@ MODELS = {
         'scaler': pickle.load(open('beans/app/models/scaler.pkl', 'rb')),
     },
     'brinjal': {
-        'model': pickle.load(open('brinjal_model.pkl', 'rb')),
-        'scaler': pickle.load(open('scaler.pkl', 'rb')),
+        'model': pickle.load(open('brinjal/brinjal_model.pkl', 'rb')),
+        'scaler': pickle.load(open('brinjal/scaler.pkl', 'rb')),
     }
 }
 
@@ -201,15 +201,13 @@ def forecast_price():
       
    
 
-# ---------- Model & Data Paths ----------
-MODEL_PATH = "cabbage_model.pkl"
-CSV_PATH = "cabbage-price.csv"
-PREPROCESSED_PATH = "preprocessed_cabbage_data.pkl"
+MODEL_PATH = "cabbage/cabbage_model.pkl"
+CSV_PATH = "cabbage/cabbage-price.csv"
+PREPROCESSED_PATH = "cabbage/preprocessed_cabbage_data.pkl"
 
-# ---------- Load Model ----------
 model = joblib.load(MODEL_PATH)
 
-# ---------- Load or Generate Preprocessed Data ----------
+# Load or Generate Preprocessed Data
 if os.path.exists(PREPROCESSED_PATH):
     df = pd.read_pickle(PREPROCESSED_PATH)
 else:
@@ -231,13 +229,8 @@ else:
     df.to_pickle(PREPROCESSED_PATH)
     print("✅ Saved preprocessed_cabbage_data.pkl")
 
-# Load MAE value (optional: adjust or store separately)
 MAE = 21.3
 
-# ---------- Forecast Input Schema ----------
-class ForecastRequest(BaseModel):
-    start_date: str
-    end_date: str
 
 @app.post("/forecast/cabbage")
 def forecast_prices():
