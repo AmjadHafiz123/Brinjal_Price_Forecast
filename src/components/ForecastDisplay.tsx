@@ -35,6 +35,7 @@ export function ForecastDisplay({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setForecasts(null)
     if (!vegetable) return;
 
     let startDate: Date | undefined;
@@ -47,9 +48,7 @@ export function ForecastDisplay({
       startDate = dateRange.from;
       endDate = dateRange.to;
     }
-
     if (!startDate || !endDate) return;
-
     const fetchForecast = async () => {
       setLoading(true);
       setError(null);
@@ -135,12 +134,8 @@ export function ForecastDisplay({
                 {vegetable.replace("-", " ")} Forecast
               </h3>
               <p className="text-sm text-muted-foreground">
-                {mode === "single"
-                  ? format(singleDate!, "MMMM d, yyyy")
-                  : `${format(dateRange!.from!, "MMM d")} - ${format(
-                      dateRange!.to!,
-                      "MMM d, yyyy"
-                    )}`}
+                {(mode === "single" && singleDate) && format(singleDate!, "MMMM d, yyyy") }
+                {(mode === "range" && dateRange?.from && dateRange?.to) && `${format(dateRange!.from!, "MMM d")} - ${format(dateRange!.to!, "MMM d, yyyy")}`}
               </p>
             </div>
           </CardTitle>
