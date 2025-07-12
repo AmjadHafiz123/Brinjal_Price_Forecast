@@ -5,3 +5,8 @@ scikit-learn
 prophet
 requests
 flask-cors
+
+joblib
+lightgbm
+pydantic
+
