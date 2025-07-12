@@ -1,97 +1,73 @@
-# 🥦 Vegetable Price Forecast API
+# Welcome to your Lovable project
 
-This is a Flask API to forecast vegetable prices using a trained Prophet model. The model supports holiday effects and returns price predictions along with trend and confidence levels.
+## Project info
 
----
+**URL**: https://lovable.dev/projects/6c86daba-a5d4-4e42-a52c-63e2797b1010
 
-## 📁 Project Structure
+## How can I edit this code?
 
-vegetable-forecast-api/
-│
-├── app.py # Main Flask application
-├── brinjal_model.pkl # Trained Prophet model for brinjal
-├── scaler.pkl # Scaler used for inverse transformation
-├── requirements.txt # Python package dependencies
-├── README.md # This file
-└── venv/ # (Optional) Virtual environment
+There are several ways of editing your application.
 
-yaml
-Copy
-Edit
+**Use Lovable**
 
----
+Simply visit the [Lovable Project](https://lovable.dev/projects/6c86daba-a5d4-4e42-a52c-63e2797b1010) and start prompting.
 
-## ⚙️ Prerequisites
+Changes made via Lovable will be committed automatically to this repo.
 
-- Python 3.8 or higher
-- [pip](https://pip.pypa.io/en/stable/)
-- [VS Code](https://code.visualstudio.com/) or any IDE
+**Use your preferred IDE**
 
----
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-## 🧪 Setup Instructions
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-### 1. Clone or Download the Project
+Follow these steps:
 
-```bash
-git clone https://github.com/AmjadHafiz123/Brinjal_Price_Forecast.git
-cd vegetable-forecast-api
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-2. Create and Activate a Virtual Environment
-python -m venv venv
-Windows:
-venv\Scripts\activate
+# Step 3: Install the necessary dependencies.
+npm i
 
-Mac/Linux:
-source venv/bin/activate
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
 
+**Edit a file directly in GitHub**
 
-3. Install Dependencies
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-pip install -r requirements.txt
-If prophet fails to install, try:
+**Use GitHub Codespaces**
 
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-pip install prophet
-Or for legacy versions:
+## What technologies are used for this project?
 
+This project is built with:
 
-pip install fbprophet
-🚀 Running the Flask Server
-Set the Flask app and run:
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-export FLASK_APP=app
-flask run
-For Windows CMD:
+## How can I deploy this project?
 
-set FLASK_APP=app
-flask run
-Server will be available at:
-http://127.0.0.1:5000
+Simply open [Lovable](https://lovable.dev/projects/6c86daba-a5d4-4e42-a52c-63e2797b1010) and click on Share -> Publish.
 
-📡 API Endpoint
-POST /forecast
-➤ Request Body (JSON)
+## Can I connect a custom domain to my Lovable project?
 
-{
-  "vegetable": "brinjal",
-  "startdate": "2025-07-01",
-  "enddate": "2025-07-10"
-}
-➤ Response Format
+Yes, you can!
 
-[
-  {
-    "date": "2025-07-01",
-    "price": 23.45,
-    "trend": "up",
-    "confidence": 0.87
-  },
-  {
-    "date": "2025-07-02",
-    "price": 23.35,
-    "trend": "down",
-    "confidence": 0.91
-  }
-]
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

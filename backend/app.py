@@ -4,23 +4,25 @@ import pandas as pd
 from datetime import datetime
 import numpy as np
 import requests
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def home():
-    url = "http://127.0.0.1:5000/forecast"
-    data = {
-        "vegetable": "brinjal",
-        "startdate": "2025-08-01",
-        "enddate": "2025-08-10"
-    }
+    # url = "http://127.0.0.1:5000/forecast"
+    # data = {
+    #     "vegetable": "brinjal",
+    #     "startdate": "2025-08-01",
+    #     "enddate": "2025-08-10"
+    # }
 
-    response = requests.post(url, json=data)
+    # response = requests.post(url, json=data)
 
-    print(response.status_code)
-    print(response.json())
-    return response.json()
+    # print(response.status_code)
+    # print(response.json())
+    return "Hi"
 
 # Load models and scalers (for simplicity, per vegetable; extend as needed)
 MODELS = {
