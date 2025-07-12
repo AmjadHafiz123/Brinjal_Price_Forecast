@@ -78,8 +78,38 @@ def predict_single_date(date, historical_df, model_info):
 def forecast_price():
     data = request.get_json()
     vegetable = data.get('vegetable').lower()
-    start_date = pd.to_datetime(data.get('startdate'))
-    end_date = pd.to_datetime(data.get('enddate'))
+    # start_date = pd.to_datetime(data.get('startdate'))
+    # end_date_str = pd.to_datetime(data.get('enddate'))
+    # end_date = pd.to_datetime(end_date_str) if end_date_str else start_date
+
+    # Validate and parse dates with error handling
+    try:
+        start_date = pd.to_datetime(data['startdate'])  # Required field
+    except (KeyError, ValueError) as e:
+        return jsonify({
+            'error': 'Invalid or missing start date',
+            'details': str(e),
+            'expected_format': 'YYYY-MM-DD'
+        }), 400
+
+    # Handle end date (default to start_date if missing/empty/invalid)
+    end_date = start_date  # Default value
+    if 'enddate' in data and data['enddate'].strip():
+        try:
+            end_date = pd.to_datetime(data['enddate'])
+        except ValueError as e:
+            return jsonify({
+                'error': 'Invalid end date',
+                'details': str(e),
+                'expected_format': 'YYYY-MM-DD'
+            }), 400
+
+    # Validate date order
+    if end_date < start_date:
+        return jsonify({
+            'error': 'Invalid date range',
+            'message': 'End date cannot be before start date'
+        }), 400
 
     if vegetable not in MODELS:
         return jsonify({'error': 'Model not found for vegetable'}), 400
